@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Api LOOKUP</title>
+</head>
+<body>
+<form>
+    <label for="answer">Answer "yes" or "no"</label>
+    <input type="text" name="answer" id="answer">
+    <input type="button" value="Submit" id="btn" onclick="response()">
+    <div class="match">
+        <p>you have <span id="yes_answer">0</span> Yes match</p>
+        <p>you have <span id="no_answer">0</span> No match</p>
+    </div>
+
+</form>
+<script>
+
+    function response(){
+        const data_api = fetch("https://yesno.wtf/api")
+        console.log(data_api)
+        data_api.then(data=>data.json())
+                 .then(data=>{
+                     let userInp = document.getElementById("answer")
+                     console.log(data.answer)
+                     if (userInp ==="yes"){
+                         if(data.answer==="yes"){
+                             let yes_count = document.getElementById("yes_answer")
+                             yes_count +=1
+                             document.getElementById("yes_answer").innerHTML +=1
+                         }
+
+                     }else if(userInp==="no"){
+                         if(data.answer==="no"){
+            
+                             no_count = 0
+                             for(no_count = 0; no_count>0; no_count++){
+                                 document.getElementById("no_answer").innerHTML = no_count
+                             }
+                         }
+                     }
+                 })
+
+    }
+
+    
+    
+
+</script>
+
+</body>
+</html>
