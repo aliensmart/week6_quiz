@@ -24,25 +24,31 @@
         console.log(data_api)
         data_api.then(data=>data.json())
                  .then(data=>{
-                     let userInp = document.getElementById("answer")
+                     let userInp = document.getElementById("answer").value
                      console.log(data.answer)
+                     
                      if (userInp ==="yes"){
                          if(data.answer==="yes"){
-                             let yes_count = document.getElementById("yes_answer")
+                             console.log("matched yes")
+                             let yes_count = document.getElementById("yes_answer").innerHTML
+                              yes_count = parseInt(yes_count)
                              yes_count +=1
-                             document.getElementById("yes_answer").innerHTML +=1
+                             document.getElementById("yes_answer").innerHTML = yes_count
+                             
                          }
 
-                     }else if(userInp==="no"){
-                         if(data.answer==="no"){
+                     }else if(userInp==="no" && data.answer==="no"){
+                         
+                             console.log("matched no")
             
-                             no_count = 0
-                             for(no_count = 0; no_count>0; no_count++){
-                                 document.getElementById("no_answer").innerHTML = no_count
-                             }
-                         }
+                             
+                            let no_count = document.getElementById("no_answer").innerHTML
+                            no_count = parseInt(no_count)
+                             no_count +=1
+                             document.getElementById("no_answer").innerHTML = no_count
                      }
                  })
+
 
     }
 
